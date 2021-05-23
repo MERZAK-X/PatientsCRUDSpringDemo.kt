@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html	xmlns:th="http://thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" 
+		layout:decorator="template1">
+<head>
+	<meta charset="UTF-8">
+	<title>Patients</title>
+	<!--  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>  -->
+</head>
+<body>
+	<div layout:fragment="pageContent">
+	
+	<div class="container mt-5">
+	<div class="card">
+		<div class="card-header">
+			<h3>Patients list ...</h3>
+		</div>
+		<div class="card-body">
+		<form method="get" th:action="@{patients}">
+			<div class="form-group">
+			<label>Name</label>
+			<input type="text" name="keyword" th:value="${keyword}" placeholder="Give us a hint!"/>
+			<button class="btn btn-success">Seek!</button>
+			</div>
+		</form>
+		<table class="table">
+				<tr>
+					<th>ID</th><th>ID Card</th><th>Last name</th><th>First name</th><th>Address</th><th>Date of birth</th><th>Sex</th>
+				</tr>
+				<tr th:each="p:${list}">
+					<td th:text="${p.id}"></td>
+					<td th:text="${p.idCard}"></td>
+					<td th:text="${p.lastname}"></td>
+					<td th:text="${p.firstname}"></td>
+					<td th:text="${p.address}"></td>
+					<td th:text="${p.dateOfBirth}"></td>
+					<td th:text="${p.sex}"></td>
+					<td sec:authorize="hasRole('ROLE_ADMIN')"> 
+					<a onclick="return confirm('Are you sure you want to delete this patient?')"
+						class="btn btn-danger" 
+						th:href="@{deletePatient2(id=${p.id},page=${currentPage},keyword=${keyword},size=${size})}">
+						Delete</a> 
+					<a th:href="@{editPatient(id=${p.id})}" class="btn btn-success">
+						Edit</a></td>
+				</tr>
+		</table>
+		<ul class="nav nav-pills">
+			<li th:each="page,status:${pages}">
+				<a th:class="${status.index==currentPage?'btn btn-primary':'btn'}" 
+				 th:href="@{patients(page=${status.index},keyword=${keyword},size=${size})}" th:text="${status.index}"></a>
+			</li>
+			
+		</ul>
+		</div>
+	</div>
+	
+	</div>
+	
+	</div>
+</body>
+</html>

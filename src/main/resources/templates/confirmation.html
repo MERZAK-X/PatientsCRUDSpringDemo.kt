@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html	xmlns:th="http://thymeleaf.org" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="template1">
+<head>
+	<meta charset="UTF-8">
+	<title>Add Patient</title>
+	<!--  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>  -->
+</head>
+<body>
+		<div layout:fragment="pageContent">
+			<div class="container mt-5">
+				<div class="card">
+						<div class="card-header" >
+							<h3>Success</h3>
+						</div>
+						<div class="card-body">
+							<div class="container">
+								<div class="form-group">
+									<label class="control-label">ID :</label>
+									<label class="control-label" th:text="${patient.id}"></label>
+								</div>
+								<div class="form-group">
+									<label class="control-label">ID Card :</label>
+									<label class="control-label" th:text="${patient.idCard}"></label>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Lastname :</label>
+									<label class="control-label" th:text="${patient.lastname}"></label>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Firstname :</label>
+									<label class="control-label" th:text="${patient.firstname}"></label>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Address :</label>
+									<label class="control-label" th:text="${patient.address}"></label>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Date of birth :</label>
+									<label class="control-label" th:text="${patient.dateOfBirth}"></label>
+								</div>
+								<div class="form-group">
+									<label class="control-label">Sex :</label>
+									<label class="control-label" th:text="${patient.sex}"></label>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+			
+		
+		</div>
+</body>
+</html>
